@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/images/effects/plain_background.png" type="Texture" id=1]
+
+[node name="natural_darkness" type="Sprite"]
+modulate = Color( 0.0117647, 0.0980392, 0.247059, 0.682353 )
+texture = ExtResource( 1 )

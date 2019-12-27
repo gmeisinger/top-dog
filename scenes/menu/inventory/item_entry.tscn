@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/theme/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/menu/inventory/item_entry.gd" type="Script" id=2]
+[ext_resource path="res://assets/theme/equipped_item_entry.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/theme/equipped_entry_hover.tres" type="StyleBox" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+
+[node name="item_entry" type="Control"]
+pause_mode = 2
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+focus_mode = 2
+mouse_filter = 1
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+item_scn = "res://scenes/weapons/guns/automatic_rifle/automatic_rifle.tscn"
+equipped_style = ExtResource( 3 )
+equipped_hover_style = ExtResource( 4 )
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+toggle_mode = true
+
+[node name="image" type="TextureRect" parent="Button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 2
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 4
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

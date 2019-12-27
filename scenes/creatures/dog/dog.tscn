@@ -1,0 +1,131 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/creatures/creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/creatures/dog/dog.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/actor_sprites/creatures/dog.png" type="Texture" id=3]
+[ext_resource path="res://scenes/creatures/dog/states/dog_follow.gd" type="Script" id=4]
+[ext_resource path="res://scenes/creatures/dog/states/dog_fetch.gd" type="Script" id=5]
+[ext_resource path="res://scenes/creatures/dog/states/dog_return.gd" type="Script" id=6]
+[ext_resource path="res://scenes/creatures/dog/states/dog_pathfinding.gd" type="Script" id=7]
+[ext_resource path="res://scenes/creatures/dog/states/dog_waiting.gd" type="Script" id=8]
+[ext_resource path="res://scenes/inventoryMgr/inventoryMgr.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/components/detector/radial_detector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/interactable/interactable.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/dialog/speech_bubble.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "move"
+length = 0.45
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0117463, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "sit"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 9, 10 ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 250.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 2.67734 )
+
+[node name="dog" instance=ExtResource( 1 )]
+collision_layer = 0
+script = ExtResource( 2 )
+base_speed = 1.5
+follow_distance = 48.0
+
+[node name="Sprite" parent="." index="0"]
+use_parent_material = true
+position = Vector2( 0, -6 )
+texture = ExtResource( 3 )
+hframes = 11
+frame = 7
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "idle"
+anims/idle = SubResource( 1 )
+anims/move = SubResource( 2 )
+anims/sit = SubResource( 3 )
+
+[node name="follow" type="Node" parent="stateMachine" index="0"]
+script = ExtResource( 4 )
+is_starting_state = false
+
+[node name="fetch" type="Node" parent="stateMachine" index="1"]
+script = ExtResource( 5 )
+
+[node name="return" type="Node" parent="stateMachine" index="2"]
+script = ExtResource( 6 )
+
+[node name="pathfinding" type="Node" parent="stateMachine" index="3"]
+script = ExtResource( 7 )
+
+[node name="waiting" type="Node" parent="stateMachine" index="4"]
+script = ExtResource( 8 )
+is_starting_state = true
+
+[node name="inventoryMgr" parent="." index="3" instance=ExtResource( 9 )]
+slots = 1
+
+[node name="radial_detector" parent="." index="4" instance=ExtResource( 10 )]
+collision_mask = 64
+radius = 250
+
+[node name="CollisionShape2D" parent="radial_detector" index="0"]
+shape = SubResource( 4 )
+
+[node name="interactable" parent="." index="5" instance=ExtResource( 11 )]
+
+[node name="feet_collision" type="CollisionShape2D" parent="." index="6"]
+position = Vector2( -0.946938, 4.46411 )
+shape = SubResource( 5 )
+
+[node name="speech_bubble" parent="." index="7" instance=ExtResource( 12 )]
+margin_top = -21.0
+margin_bottom = -21.0
+[connection signal="area_entered" from="radial_detector" to="." method="_on_radial_detector_area_entered"]
+
+[editable path="radial_detector"]

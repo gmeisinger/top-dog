@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/hud/hud.gd" type="Script" id=1]
+[ext_resource path="res://scenes/util/performanceMonitor/PerformanceMonitor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/theme/menu_theme.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/menu/menuMgr.tscn" type="PackedScene" id=4]
+
+[node name="hud" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="PerformanceMonitor" parent="." instance=ExtResource( 2 )]
+
+[node name="zombie_count" type="Label" parent="."]
+margin_left = 12.5964
+margin_top = 87.7758
+margin_right = 126.596
+margin_bottom = 110.776
+theme = ExtResource( 3 )
+text = "Zombies: "
+
+[node name="menuMgr" parent="." instance=ExtResource( 4 )]

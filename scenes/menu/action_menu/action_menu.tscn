@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/theme/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/menu/action_menu/action_menu.gd" type="Script" id=2]
+[ext_resource path="res://assets/theme/popup_menu_panel.tres" type="StyleBox" id=3]
+
+[node name="action_menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="menu" type="PopupMenu" parent="."]
+margin_right = 20.0
+margin_bottom = 20.0
+custom_styles/panel = ExtResource( 3 )
+items = [ "Talk", null, 0, false, false, -1, 0, null, "", false, "Cancel", null, 0, false, false, -1, 0, null, "", false ]
+[connection signal="about_to_show" from="menu" to="." method="_on_menu_about_to_show"]
+[connection signal="index_pressed" from="menu" to="." method="_on_menu_index_pressed"]
+[connection signal="minimum_size_changed" from="menu" to="." method="_on_menu_minimum_size_changed"]
+[connection signal="popup_hide" from="menu" to="." method="_on_menu_popup_hide"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/dialog/dialog_box.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/dialog/speech_bubble.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/speech_bubble_font.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+
+[node name="speech_bubble" instance=ExtResource( 1 )]
+rect_scale = Vector2( 0.5, 0.5 )
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="Panel" parent="." index="0"]
+margin_left = -80.0
+margin_top = -64.0
+margin_right = 80.0
+margin_bottom = 0.0
+custom_styles/panelf = SubResource( 1 )
+
+[node name="TextInterfaceEngine" parent="Panel" index="0"]
+margin_left = 7.0
+margin_top = 2.3
+margin_right = -10.0
+margin_bottom = -4.06
+FONT = ExtResource( 3 )
+
+[node name="speaker" parent="." index="1"]
+visible = false
+margin_left = -28.0
+margin_top = -52.0
+margin_right = 28.0
+margin_bottom = -32.0
+
+[node name="Label" parent="speaker" index="0"]
+margin_right = 2.0
+margin_bottom = 2.0
+text = "Speaker"

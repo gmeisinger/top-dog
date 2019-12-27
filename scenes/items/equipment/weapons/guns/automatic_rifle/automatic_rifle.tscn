@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/items/equipment/weapons/guns/auto_gun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/items/weapons/ak_rifle.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/actor_sprites/hand.png" type="Texture" id=3]
+
+[node name="automatic_rifle" index="0" instance=ExtResource( 1 )]
+position = Vector2( 0, 1 )
+icon_rect = Rect2( 0, 0, 36, 14 )
+item_name = "5.56 Rifle"
+description = "A cheap rifle."
+equippable = true
+damage = 45.0
+handle_offset = Vector2( -4, 0 )
+two_handed = true
+accuracy = 0.98
+fire_rate = 0.1
+recoil = 0.2
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+frame = 0
+
+[node name="fire_point" parent="Sprite" index="0"]
+position = Vector2( 14.4808, -4.82692 )
+
+[node name="hand" parent="hands" index="0"]
+position = Vector2( -9, 1 )
+
+[node name="hand2" type="Sprite" parent="hands" index="1"]
+position = Vector2( 4, -2 )
+texture = ExtResource( 3 )

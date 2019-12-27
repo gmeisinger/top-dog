@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/theme/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/menu/title/titlescreen.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/pixelated.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 3 )
+
+[sub_resource type="ButtonGroup" id=2]
+
+[node name="titlescreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.164706, 0.184314, 0.305882, 1 )
+
+[node name="author" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "George Meisinger"
+align = 1
+valign = 1
+
+[node name="title" type="Label" parent="."]
+margin_left = 66.8073
+margin_top = 59.775
+margin_right = 721.807
+margin_bottom = 324.775
+custom_fonts/font = SubResource( 1 )
+text = "Top-down Shooter"
+
+[node name="buttons" type="VBoxContainer" parent="."]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 892.0
+margin_bottom = 466.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="start" type="Button" parent="buttons"]
+margin_top = 11.0
+margin_right = 192.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 192, 64 )
+group = SubResource( 2 )
+text = "Start"
+
+[node name="exit" type="Button" parent="buttons"]
+margin_top = 91.0
+margin_right = 192.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 192, 64 )
+group = SubResource( 2 )
+text = "Exit"
+[connection signal="button_up" from="buttons/start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="buttons/exit" to="." method="_on_exit_button_up"]

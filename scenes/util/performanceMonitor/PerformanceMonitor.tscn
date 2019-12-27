@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/theme/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/util/performanceMonitor/PerformanceMonitor.gd" type="Script" id=2]
+
+[node name="PerformanceMonitor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.85, 0.85 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="FPS" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 3.0
+margin_right = 109.0
+margin_bottom = 20.0
+text = "FPS:"
+
+[node name="FPSVal" type="Label" parent="."]
+margin_left = 142.089
+margin_top = 3.49889
+margin_right = 182.089
+margin_bottom = 20.4989
+text = "12"
+
+[node name="Mem" type="Label" parent="."]
+margin_left = 5.77731
+margin_top = 18.534
+margin_right = 62.7773
+margin_bottom = 32.534
+text = "Memory:"
+
+[node name="MemVal" type="Label" parent="."]
+margin_left = 141.597
+margin_top = 18.6412
+margin_right = 181.597
+margin_bottom = 35.6412
+text = "12"
+
+[node name="VidMem" type="Label" parent="."]
+margin_left = 5.41702
+margin_top = 35.1422
+margin_right = 102.417
+margin_bottom = 49.1422
+text = "Video Memory:"
+
+[node name="VidMemVal" type="Label" parent="."]
+margin_left = 144.268
+margin_top = 35.2494
+margin_right = 184.268
+margin_bottom = 52.2494

@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/theme/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/menu/inventory/inventory_menu.gd" type="Script" id=2]
+[ext_resource path="res://scenes/menu/inventory/item_tooltip.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/menu/inventory/item_options.tscn" type="PackedScene" id=4]
+
+[node name="inventory_menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="PanelContainer" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 128.0
+margin_top = 64.0
+margin_right = -128.0
+margin_bottom = -64.0
+mouse_filter = 2
+
+[node name="title" type="Label" parent="PanelContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 736.0
+margin_bottom = 49.0
+text = "Inventory"
+align = 1
+valign = 1
+
+[node name="left" type="Control" parent="PanelContainer"]
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 64.0
+margin_right = -16.0
+margin_bottom = -32.0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer/left"]
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_bottom = -16.0
+
+[node name="Label" type="Label" parent="PanelContainer/left/Panel"]
+margin_right = 40.0
+margin_bottom = 17.0
+text = "Item Info"
+align = 1
+valign = 1
+
+[node name="grid" type="GridContainer" parent="PanelContainer/left"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 16.0
+focus_mode = 2
+mouse_filter = 2
+columns = 4
+
+[node name="right" type="Control" parent="PanelContainer"]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = -32.0
+margin_bottom = -32.0
+mouse_filter = 2
+
+[node name="item_tooltip" parent="PanelContainer/right" instance=ExtResource( 3 )]
+anchor_bottom = 0.5
+margin_top = 1.10803
+margin_bottom = -14.892
+mouse_filter = 2
+
+[node name="item_options" parent="PanelContainer/right" instance=ExtResource( 4 )]
+[connection signal="draw" from="." to="." method="_on_inventory_menu_draw"]
