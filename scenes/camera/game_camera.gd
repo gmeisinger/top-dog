@@ -25,6 +25,15 @@ func update_offset(target : Vector2):
 		#offset = new_offset
 		tween.start()
 
+func set_darkness(dark = true):
+	$Light2D.enabled = dark
+
+func toggle_darkness():
+	$Light2D.enabled = !($Light2D.enabled)
+
+func set_light_power(power : float):
+	$Light2D.texture_scale = max(1.0, power)
+
 func _input(event):
 	if Input.is_key_pressed(KEY_CONTROL) or host.control_mode == host.MODE_JOY:
 		if event.is_action("zoom_in"):

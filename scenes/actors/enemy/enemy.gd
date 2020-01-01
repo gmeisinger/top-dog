@@ -4,15 +4,17 @@ var target_location
 var chasing = false
 var ATTACK_DISTANCE = 32.0
 
-var unarmed_scn = preload("res://scenes/items/equipment/weapons/unarmed/unarmed_weapon.tscn")
+export(String, FILE, "*.tscn") var weapon_path = "res://scenes/items/equipment/weapons/unarmed/unarmed_weapon.tscn"
+onready var weapon_scene = load(weapon_path)
+var weapon
 
 var target
 
 func _ready():
 	max_speed = 3.0
 	acceleration = 2.0
-	var unarmed = unarmed_scn.instance()
-	equip(unarmed)
+	weapon = weapon_scene.instance()
+	equip(weapon)
 	get_weapon().set_enemy(true)
 	target = globals.get("player")
 

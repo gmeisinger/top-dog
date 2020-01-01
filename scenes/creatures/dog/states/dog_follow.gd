@@ -3,6 +3,7 @@ extends "res://scenes/util/stateMachine/baseState.gd"
 var PATHFIND_DISTANCE = 300.0
 
 func enter():
+	host.get_node("interactable").set_active(false)
 	host.speed = host.base_speed
 	if not host.leader:
 		host.leader = globals.get("player")

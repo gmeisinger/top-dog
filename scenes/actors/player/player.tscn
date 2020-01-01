@@ -37,7 +37,7 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactor" index="0"]
-polygon = PoolVector2Array( 30.1721, -12.8131, 37.5878, -0.190746, 31.2766, 12.2738, 2.335, 3.76691, 2.4371, -4.2985 )
+polygon = PoolVector2Array( 36.4097, -17.3821, 54.5543, 0.131443, 36.2519, 16.856, 2.335, 3.76691, 2.4371, -4.2985 )
 
 [node name="Polygon2D" type="Polygon2D" parent="interactor" index="1"]
 visible = false

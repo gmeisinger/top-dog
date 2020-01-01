@@ -1,6 +1,7 @@
 extends "res://scenes/util/stateMachine/baseState.gd"
 
 func enter():
+	host.get_node("interactable").set_active(false)
 	host.drop_items()
 	host.speed = host.base_speed * 2
 	host.bark()

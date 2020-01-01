@@ -1,6 +1,7 @@
 extends "res://scenes/util/stateMachine/baseState.gd"
 
 func enter():
+	host.get_node("interactable").set_active(false)
 	host.speed = host.base_speed * 2
 	if not host.leader:
 		host.leader = globals.get("player")

@@ -4,6 +4,7 @@ var MIN_DISTANCE = 5.0
 var step = 0
 
 func enter():
+	host.get_node("interactable").set_active(false)
 	host.drop_items()
 	host.speed = host.base_speed * 2
 	host.bark()

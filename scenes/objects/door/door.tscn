@@ -46,6 +46,7 @@ extents = Vector2( 28.1465, 26.7063 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 2 )
 centered = false
 hframes = 8

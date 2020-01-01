@@ -1,11 +1,20 @@
 extends Node2D
 
+var notification_scene = preload("res://scenes/hud/notification/notification.tscn")
+
+export var dark = true
 
 func _ready():
 	globals.set("cur_scene", self)
+	SignalMgr.register_subscriber(self, "notify", "notify")
 	
 func add_object(obj):
 	$objects.add_child(obj)
+
+func notify(pos : Vector2, text : String):
+	var notification = notification_scene.instance()
+	notification.notify(pos, text)
+	add_child(notification)
 
 func get_nav(pointA, pointB):
 	#first get closest nav points

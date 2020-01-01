@@ -6,7 +6,8 @@
 [ext_resource path="res://scenes/actors/player/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/actors/enemy/zombie.tscn" type="PackedScene" id=5]
 
-[node name="test_town" index="0" instance=ExtResource( 1 )]
+[node name="test_town" instance=ExtResource( 1 )]
+dark = false
 
 [node name="grass_terrain" parent="map" index="1" instance=ExtResource( 2 )]
 
