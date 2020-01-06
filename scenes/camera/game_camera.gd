@@ -16,6 +16,7 @@ func _ready():
 	globals.set("camera", self)
 	max_offset_x = vp_size.x/4
 	max_offset_y = vp_size.y/4
+	set_light_power(2.0)
 
 func update_offset(target : Vector2):
 	var new_offset = target / 4.0

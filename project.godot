@@ -201,6 +201,7 @@ zoom_in={
 2d_physics/layer_5="enemy_bullets"
 2d_physics/layer_6="interactables"
 2d_physics/layer_7="fetchables"
+2d_physics/layer_8="dog_only"
 
 [rendering]
 

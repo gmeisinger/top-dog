@@ -40,10 +40,10 @@ position = Vector2( 1069.55, 130.414 )
 message = "Use weapon with LEFT CLICK / R1"
 
 [node name="pistol" parent="objects" index="4" instance=ExtResource( 5 )]
-position = Vector2( 1312.63, 175.789 )
+position = Vector2( 1311, -144 )
 
 [node name="dog" parent="objects" index="5" instance=ExtResource( 6 )]
-position = Vector2( 1192.26, 128.615 )
+position = Vector2( 1190, 137 )
 
 [node name="npc" parent="objects" index="6" instance=ExtResource( 7 )]
 position = Vector2( 1435.38, 241.964 )
@@ -64,3 +64,5 @@ position = Vector2( 1836.48, 160.489 )
 [node name="manual_door" parent="objects" index="10" instance=ExtResource( 11 )]
 position = Vector2( 1280, 974 )
 locked = true
+
+[editable path="map/complex1_tiles"]

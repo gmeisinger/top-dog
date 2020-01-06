@@ -8,6 +8,11 @@ var path = []
 var pickup_distance = 5.0
 export var follow_distance : float = 15.0
 
+var PATHFIND_DISTANCE = 300.0
+
+var DEFAULT_DETECTOR_RADIUS = 250
+var PRECISION_DETECTOR_RADIUS = 75
+
 func _ready():
 	SignalMgr.register_subscriber(self, "move_dog", "_on_move_dog")
 
