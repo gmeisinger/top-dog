@@ -11,15 +11,36 @@ export var follow_distance : float = 15.0
 var PATHFIND_DISTANCE = 300.0
 
 var DEFAULT_DETECTOR_RADIUS = 250
-var PRECISION_DETECTOR_RADIUS = 75
+var PRECISION_DETECTOR_RADIUS = 40
 
 func _ready():
 	SignalMgr.register_subscriber(self, "move_dog", "_on_move_dog")
 
 func _on_move_dog(destination):
-	path = globals.get("cur_scene").get_nav(global_position, destination)
-	next_state = "waiting"
-	$stateMachine.change_state("pathfinding")
+	# first we should check the are
+	$search_area.global_position = destination
+	$search_area.monitoring = true
+	var search_results = $search_area.get_overlapping_areas()
+	#now decide what to do
+	if search_results.empty():
+		path = globals.get("cur_scene").get_nav(global_position, destination)
+		next_state = "return"
+		$stateMachine.change_state("pathfinding")
+	else:
+		var choice = prioritize_interactions(search_results)
+
+func prioritize_interactions(options : Array):
+	# priority list:
+	# 1. fetch item
+	# 2. use object
+	# 3. use dog door
+	# 4. attack enemy
+	# if player is flagged for combat, attack moves to 1
+	var choice = options[0]
+	if options.size() == 1:
+		return choice
+	for option in options:
+		pass
 
 func bark(time = 1.0):
 	if !$speech_bubble.active:
