@@ -17,6 +17,7 @@ func update(delta):
 	if host.move_target.length() < MIN_DISTANCE:
 		step += 1
 		if step == host.path.size():
+			host.emit_signal("arrived")
 			change_state(host.next_state)
 	host.process_movement(delta)
 	host.process_move_and_collide(delta)

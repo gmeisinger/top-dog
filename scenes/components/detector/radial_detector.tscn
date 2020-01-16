@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/components/detector/radial_detector.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 15.0
+radius = 40.0
 
 [node name="radial_detector" type="Area2D"]
 monitorable = false

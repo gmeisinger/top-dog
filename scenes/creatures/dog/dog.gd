@@ -1,5 +1,7 @@
 extends "res://scenes/creatures/creature.gd"
 
+signal arrived()
+
 var leader : Node2D
 var next_state : String
 var move_target : Vector2
@@ -18,16 +20,26 @@ func _ready():
 
 func _on_move_dog(destination):
 	# first we should check the are
-	$search_area.global_position = destination
-	$search_area.monitoring = true
-	var search_results = $search_area.get_overlapping_areas()
+	$static_node/search_area.set_global_position(destination)
+	$static_node/search_area.monitoring = true
+	var search_results = $static_node/search_area.get_overlapping_areas()
+	print(search_results.size())
 	#now decide what to do
 	if search_results.empty():
-		path = globals.get("cur_scene").get_nav(global_position, destination)
+		path = get_nav_to(destination)
 		next_state = "return"
 		$stateMachine.change_state("pathfinding")
 	else:
 		var choice = prioritize_interactions(search_results)
+		if choice.name == "1" or choice.name == "2":
+			use_dog_door(choice)
+	#$search_area.set_position(Vector2.ZERO)
+
+func use_dog_door(entrance_node):
+	print("Dog wants to use a dog door")
+	var door = entrance_node.get_parent()
+	if not door.busy:
+		door.follow_path(entrance_node)
 
 func prioritize_interactions(options : Array):
 	# priority list:
@@ -39,8 +51,16 @@ func prioritize_interactions(options : Array):
 	var choice = options[0]
 	if options.size() == 1:
 		return choice
-	for option in options:
-		pass
+	options.sort_custom(self, "sort_priorities")
+	return options[0]
+
+static func sort_priorities(p1, p2):
+	if p1.dog_priority > p2.dog_priority:
+		return true
+	return false
+
+func get_nav_to(destination : Vector2):
+	return globals.get("cur_scene").get_nav(global_position, destination)
 
 func bark(time = 1.0):
 	if !$speech_bubble.active:

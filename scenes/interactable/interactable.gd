@@ -4,6 +4,7 @@ var selected = false
 onready var outline_material = load("res://assets/shaders/outline.tres")
 
 export(String, MULTILINE) var option_lines = "Inspect"
+export var dog_priority : int = 0
 var options = []
 var choice
 var waiting_for_choice = false

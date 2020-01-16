@@ -43,7 +43,6 @@ loop = false
 [node name="light" type="Light2D" parent="path/path_follow"]
 visible = false
 rotation = 1.57907
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
